@@ -1,12 +1,11 @@
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import 'dotenv/config'
 
 const app = express();
 const port = 3000;
-const __dirname = dirname(fileURLToPath(import.meta.url));
+
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,16 +14,20 @@ app.get("/", (req,res) => {
     res.render("index.ejs");
 });
 
-app.post("/getWeather" , (req,res) => {
+app.post("/getWeather" , async (req,res) => {
     const options = {
-        method: 'GET',
-        url: 'https://weatherapi-com.p.rapidapi.com/current.json',
-        params: {q: '53.1,-0.13'},
+        params: {q: `${req.body.location}`},
         headers: {
-          'X-RapidAPI-Key': '20912e78f5mshf0b9e41f378931ap14b6c4jsn051f3df5b543',
-          'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+          'X-RapidAPI-Key': `${process.env.API_KEY}`,
+          'X-RapidAPI-Host': `${process.env.API_HOST}`,
         }
-      };
+    };
+    try {
+        var result = await axios.get("https://weatherapi-com.p.rapidapi.com/current.json",options);
+        console.log(result.data);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 })
 
 app.listen(port, (res,req) => {
