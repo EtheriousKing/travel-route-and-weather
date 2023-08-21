@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Weather</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <section id="inputs">
+        <h2>To retrieve the route, and weather information for both your starting location and your destination, kindly fill the form provided below: </h2>
+        <form action="/getTravelWeather" method="post">
+            <label for="currentLocation">Enter your starting location: </label>
+            <input name="currentLocation" type="text">
+            <label for="destination">Enter your destination: </label>
+            <input name= "destination" type="text">
+            <input class="submitButton" type="submit" value="Submit"> 
+        </form>
+        <h2>To obtain the weather information for a specific location, kindly fill the form below: </h2>
+        <form action="/getWeather" method="post">
+            <label for="location">Please enter your desired location: </label>
+            <input name="location" type="text">
+            <input class="submitButton" type="submit" value="Submit">
+        </form>
+    </section>
+    <section id="footer">
+        <%- include("partials/footer.ejs") %>
+    </section>
+</body>
+</html>
