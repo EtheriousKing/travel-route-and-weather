@@ -1,0 +1,17 @@
+{
+  "name": "travel-route-and-weather",
+  "version": "1.0.0",
+  "description": "App which creates a route between your location and final destinaltion and tells you the weather at your destination",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aaron Deril Dsouza",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
+  }
+}
