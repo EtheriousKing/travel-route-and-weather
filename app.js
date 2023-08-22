@@ -18,8 +18,8 @@ app.post("/getWeather" , async (req,res) => {
     const options = {
         params: {q: `${req.body.location}`},
         headers: {
-          'X-RapidAPI-Key': `${process.env.API_KEY}`,
-          'X-RapidAPI-Host': `${process.env.API_HOST}`,
+          'X-RapidAPI-Key': `${process.env.WEATHER_API_KEY}`,
+          'X-RapidAPI-Host': `${process.env.WEATHER_API_HOST}`,
         }
     };
     try {
@@ -29,6 +29,16 @@ app.post("/getWeather" , async (req,res) => {
     } catch (error) {
         console.log(error);
         res.status(500).send(error.message);
+    }
+});
+
+app.post("/getTravelWeather", async (req,res) => {
+    try { 
+        const response = await axios.get(`https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/Routes?wp.0=${req.body.currentLocation},WA;64;1&wp.1=${req.body.destination},WA;66;2&mmd=0&key=${process.env.ROUTE_API_KEY}`,{ responseType: 'arraybuffer' })
+        const buffer64 = Buffer.from(response.data, 'binary').toString('base64')
+        res.render("index.ejs",{map : buffer64});
+    } catch (error) {
+        console.error(error);
     }
 })
 
