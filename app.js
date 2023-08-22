@@ -25,7 +25,9 @@ app.post("/getWeather" , async (req,res) => {
     try {
         var result = await axios.get("https://weatherapi-com.p.rapidapi.com/current.json",options);
         console.log(result.data);
+        res.render("index.ejs",{weather : result.data});
     } catch (error) {
+        console.log(error);
         res.status(500).send(error.message);
     }
 })
