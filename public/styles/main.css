@@ -1,8 +1,24 @@
-body{
+body {
+    position: relative;
+    height: 100vh;
+}
+
+body::before{
+    content: " ";
     position: fixed;
     top: 0px;
     right: 0px;
     bottom: 0px;
     left: 0px;
     background-image:  url(../assets/images/background.jpg);
+    opacity: 0.75;
 }
+
+#inputs {
+    position: relative;
+}
+
+#footer {
+    position: relative;
+}
+
