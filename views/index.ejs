@@ -23,8 +23,24 @@
             <input class="submitButton" type="submit" value="Submit">
         </form>
     </section>
+    <% if (locals.weather) { %>
+     <section id="weather">
+        <h3>Weather</h3>
+        <p>City: <%= weather.location.name %></p>
+        <p>Region: <%= weather.location.region %></p>
+        <p>Country: <%= weather.location.country %></p>
+        <p>Timezone: <%= weather.location["tz_id"] %></p>
+        <p>Temperature: <%=weather.current["temp_c"]%>°C / <%=weather.current["temp_f"] %>°F</p>
+        <p>Condition: </p>
+        <ul>
+            <li><img src="<%= weather.current.condition.icon %>" alt=""> <p><%=weather.current.condition.text  %></p></li>
+        </ul>
+        <p>Humidity: <%= weather.current.humidity %></p>
+        <p>UV: <%= weather.current.uv %></p>
+        <p>Wind Speed: <%= weather.current["wind_kph"] %> kph / <%= weather.current["wind_kph"] %> mph</p>
+     </section>
+    <% } %>  
     <section id="route"></section>
-    <section id="weather"></section>
     <section id="footer">
         <%- include("partials/footer.ejs") %>
     </section>
