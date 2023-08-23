@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tour Weather</title>
     <link rel="stylesheet" href="/styles/main.css">
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AkWs--1irsbac3yla7MAIGG58ZZ5pN_XS7CZFPgz-EUa5Wv3CX2uuHYVAOI8_DF_&callback=loadMapScenario' async defer></script>
 </head>
-<body onload='loadMapScenario();'>
+<body>
     <section id="inputs">
         <h2>To retrieve the route, and weather information for both your starting location and your destination, kindly fill the form provided below: </h2>
         <form action="/getTravelWeather" method="post">
@@ -42,11 +43,29 @@
     <% if (locals.map) { %>
      <section id="route">
         <img src="data:image/jpeg;base64,<%= map %>" />
+        <div id="myMap"></div>
+        <script>
+        function loadMapScenario() {
+            var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+
+            });
+            Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+                var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+                // Set Route Mode to driving
+                directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
+                var waypoint1 = new Microsoft.Maps.Directions.Waypoint({  location: new Microsoft.Maps.Location(location.actualStart.coordinates[0], location.actualStart.coordinates[1]) });
+                var waypoint2 = new Microsoft.Maps.Directions.Waypoint({  location: new Microsoft.Maps.Location(location.actualEnd.coordinates[0], location.actualEnd.coordinates[1]) });
+                directionsManager.addWaypoint(waypoint1);
+                directionsManager.addWaypoint(waypoint2);
+                // Set the element in which the itinerary will be rendered
+                directionsManager.calculateDirections();
+            });
+            
+        }</script>
      </section>
     <% } %>
     <section id="footer">
         <%- include("partials/footer.ejs") %>
-    </section>   
-</script>
+    </section> 
 </body>
 </html>
