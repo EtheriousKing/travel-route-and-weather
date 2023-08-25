@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
 body {
     display: flex;
     flex-direction: column;
@@ -20,6 +22,27 @@ body::before{
 
 #inputs {
     position: relative;
+    background: rgba(255, 255, 255);
+    border-radius: 25px;
+    padding: 10px;
+    font-family: 'Merriweather', serif;
+}
+
+input[type="text"] {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 3px;
+    border: 2px solid black;
+}
+
+input[type = "submit"] {
+    border-radius: 12px;
+    padding: 3px;
+    border: 2px solid black;
+}
+
+label[for="destination"] {
+    padding-left: 5px;
 }
 
 #weather {
@@ -35,11 +58,19 @@ body::before{
 
 #weather:hover {
     background: rgba(62, 62, 63, 0.5);
-    scale: 1.2;
+    scale: 1.1;
 }
 
 #route {
     position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+#myMap , #map {
+    height: 350px;
+    width: 350px;
 }
 
 ul {
@@ -55,5 +86,53 @@ li {
 
 #footer {
     position: relative;
+    bottom: 0px;
+    font-weight: bold;
 }
 
+@media (max-width : 870px) {
+    #inputs {
+        margin-bottom: 10px;
+    }
+
+    #routeForm {
+        display : flex;
+        flex-direction: column;
+    }
+
+    input[type="text"] {
+        width: 175px;
+        margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+        width: 50px;
+    }
+
+    #weather {
+        width :277px
+    }
+
+    label {
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width : 750px) {
+    #route {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #map {
+        margin-bottom: 5px;
+    }
+
+}
+
+@media (max-width : 550px) {
+    #weatherForm {
+        display: flex;
+        flex-direction: column;
+    }
+}
