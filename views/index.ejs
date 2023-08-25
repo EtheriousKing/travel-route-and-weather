@@ -43,23 +43,11 @@
      <section id="route">
         <img src="data:image/jpeg;base64,<%= map %>" />
         <div id="myMap"></div>
-        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=<%= key %>&callback=loadMapScenario' async defer></script>
-        <script type='text/javascript'>
-            function loadMapScenario() {
-                var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-                });
-                Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
-                    var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
-                    // Set Route Mode to driving
-                    directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
-                    var waypoint1 = new Microsoft.Maps.Directions.Waypoint({ address: "<%=startPoint%>" , location: new Microsoft.Maps.Location("<%=startLat %>", "<%=startLong%>") });
-                    var waypoint2 = new Microsoft.Maps.Directions.Waypoint({ address: "<%=endPoint%>", location: new Microsoft.Maps.Location("<%=endLat %>", "<%=endLong%>") });
-                    directionsManager.addWaypoint(waypoint1);
-                    directionsManager.addWaypoint(waypoint2);
-                    directionsManager.calculateDirections();
-                });    
-            }
+        <script>
+            let options = `<%- JSON.stringify(direct) %>`;
         </script>
+        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=<%= key %>&callback=loadMapScenario' async defer></script>
+        <script type='text/javascript' src="/javascript/main.js"></script>
      </section>
     <% } %>
     <section id="footer">
