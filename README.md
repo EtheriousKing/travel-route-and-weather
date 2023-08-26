@@ -13,7 +13,7 @@ As this repository was created as a part of my learning journey, it will no long
 
 ## Installation
 1. Clone this Repository.
-2. Create a .env file containing your Bing Maps API Key, as well as your Rapid API Key.
+2. Fill the requiered fields in the `.env` file.
 3. Run `npm i` to install all the required node modules.
 4. Run `node app.js` to start the server.
 5. Navigate to [localhost:3000](http://localhost:3000/);
